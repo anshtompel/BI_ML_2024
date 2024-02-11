@@ -88,9 +88,8 @@ class KNNClassifier:
         num_test = X.shape[0]
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
-                dists[i,:] = np.sum(np.abs(X[i] - self.train_X[j]))
+                dists[i, :] = np.sum(np.abs(X[i,:] - self.train_X), axis = 1)
         return dists
-
 
     def compute_distances_no_loops(self, X):
         """
