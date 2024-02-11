@@ -19,7 +19,34 @@ def binary_classification_metrics(y_pred, y_true):
     """
     YOUR CODE IS HERE
     """
-    pass
+    y_true = y_true.astype(int)
+
+    false_pos = 0
+    false_neg = 0
+    true_pos = 0
+    true_neg = 0
+
+    for actual, predicted in zip(y_true, y_pred):
+        if predicted == actual:
+            if predicted == 1: # tp
+                true_pos += 1
+            else: # tn
+                true_neg += 1
+        else:
+            if predicted == 1: # fp
+                false_pos += 1
+            else: # fn
+                false_neg += 1
+
+    confusion_matrix = np.array([
+        [true_pos, false_pos],
+        [false_neg, true_neg]
+    ])
+    accuracy = (true_pos + true_neg)/np.sum(confusion_matrix)
+    precision = (true_pos/(true_pos + false_pos))
+    recall = (true_pos/(true_pos + false_neg))
+    f1_score = 2*(precision * recall)/(precision+recall)
+    return f'Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1-score: {f1_score}'
 
 
 def multiclass_accuracy(y_pred, y_true):
