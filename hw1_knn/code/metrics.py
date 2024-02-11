@@ -46,7 +46,8 @@ def binary_classification_metrics(y_pred, y_true):
     precision = (true_pos/(true_pos + false_pos))
     recall = (true_pos/(true_pos + false_neg))
     f1_score = 2*(precision * recall)/(precision+recall)
-    return f'Accuracy: {accuracy}, Precision: {precision}, Recall: {recall}, F1-score: {f1_score}'
+    metrics = {'Accuracy': accuracy, 'Precision': precision, 'Recall': recall, 'F1-score': f1_score}
+    return metrics
 
 
 def multiclass_accuracy(y_pred, y_true):
