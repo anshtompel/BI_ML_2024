@@ -58,7 +58,14 @@ class KNNClassifier:
         """
         YOUR CODE IS HERE
         """
-        pass
+        num_train = self.train_X.shape[0]
+        num_test = X.shape[0]
+        dists = np.zeros((num_test, num_train))
+        for i in range(num_test):
+            for j in range(num_train):
+                dist = np.sum(np.abs(X[i] - self.train_X[j]))
+                dists[i,j] = dist
+        return dists
 
 
     def compute_distances_one_loop(self, X):
@@ -77,7 +84,12 @@ class KNNClassifier:
         """
         YOUR CODE IS HERE
         """
-        pass
+        num_train = self.train_X.shape[0]
+        num_test = X.shape[0]
+        dists = np.zeros((num_test, num_train))
+        for i in range(num_test):
+                dists[i,:] = np.sum(np.abs(X[i] - self.train_X[j]))
+        return dists
 
 
     def compute_distances_no_loops(self, X):
