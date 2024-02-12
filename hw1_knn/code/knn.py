@@ -88,7 +88,7 @@ class KNNClassifier:
         num_test = X.shape[0]
         distances = np.zeros((num_test, num_train))
         for i in range(num_test):
-                distances[i, :] = np.sum(np.abs(X[i,:] - self.train_X), axis = 1)
+            distances[i, :] = np.sum(np.abs(X[i,:] - self.train_X), axis = 1)
         return distances
 
     def compute_distances_no_loops(self, X):
@@ -144,11 +144,12 @@ class KNNClassifier:
            for every test sample
         """
 
-        n_train = distances.shape[0]
+        #n_train = distances.shape[0]
         n_test = distances.shape[0]
-        prediction = np.zeros(n_test, np.int)
-
-        """
-        YOUR CODE IS HERE
-        """
-        pass
+        prediction = np.zeros(n_test)
+        self.train_y = self.train_y.astype(int)
+        for i in range(n_test):
+            y_indicies = np.argsort(distances[i, :])
+            predict_y = self.train_y[y_indicies[ : self.k]]
+            prediction[i] = np.argmax(np.bincount(predict_y))
+        return prediction
