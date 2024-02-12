@@ -59,11 +59,13 @@ def multiclass_accuracy(y_pred, y_true):
     Returns:
     accuracy - ratio of accurate predictions to total samples
     """
-
-    """
-    YOUR CODE IS HERE
-    """
-    pass
+    true_score = 0
+    y_true = y_true.astype(int)
+    for i in range(len(y_true)):
+        if y_pred[i] == y_true[i]:
+            true_score += 1
+    accuracy_mult = true_score/len(y_true)
+    return accuracy_mult
 
 
 def r_squared(y_pred, y_true):
