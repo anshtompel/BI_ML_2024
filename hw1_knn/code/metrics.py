@@ -79,7 +79,14 @@ def r_squared(y_pred, y_true):
     """
     YOUR CODE IS HERE
     """
-    pass
+    mean_y = np.mean(y_true)
+    sub_pred = np.array(y_true - y_pred)
+    sub_mean = np.array(y_true - mean_y)
+    sub_pred_square = (np.sum(np.power(sub_pred, 2)))
+    sub_mean_quare = (np.sum(np.power(sub_mean, 2)))
+    r2 = 1 - (sub_pred_square/sub_mean_quare)
+    return r2
+    
 
 
 def mse(y_pred, y_true):
@@ -95,7 +102,9 @@ def mse(y_pred, y_true):
     """
     YOUR CODE IS HERE
     """
-    pass
+    sub = np.array(y_true - y_pred)
+    mse = (np.sum(np.power(sub, 2)))/len(y_true)
+    return mse
 
 
 def mae(y_pred, y_true):
@@ -111,5 +120,7 @@ def mae(y_pred, y_true):
     """
     YOUR CODE IS HERE
     """
-    pass
+    sub = np.abs(np.array(y_true - y_pred))
+    mae = (np.sum(sub))/len(y_true)
+    return mae
     
